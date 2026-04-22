@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XYZ Currency Exchange</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f4f4;
+    }
+
+    .header {
+      background: #0d0b4c;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .header h1 {
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .container {
+      width: 600px;
+      margin: -40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .form-group div {
+      width: 30%;
+    }
+
+    label {
+      font-size: 12px;
+      color: #555;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .btn {
+      background: #0d0b4c;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #1a1970;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .result-box p {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .result-box h2 {
+      font-size: 28px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>XYZ-COMPANY</h1>
+    <p>CURRENCY EXCHANGE PLATFORM</p>
+  </div>
+
+  <div class="container">
+    <div class="form-group">
+      <div>
+        <label>Amount</label>
+        <input type="number" id="amount" value="100">
+      </div>
+
+      <div>
+        <label>From</label>
+        <select id="from">
+          <option value="USD">USD - $</option>
+          <option value="EUR">EUR - €</option>
+          <option value="RWF">RWF - Frw</option>
+        </select>
+      </div>
+
+      <div>
+        <label>To</label>
+        <select id="to">
+          <option value="RWF">Rwanda - RWF</option>
+          <option value="USD">USA - USD</option>
+          <option value="EUR">Europe - EUR</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" onclick="convert()">Convert</button>
+
+    <div class="result-box">
+      <p>Result</p>
+      <h2 id="result">0</h2>
+    </div>
+  </div>
+
+  <script>
+    function convert() {
+      let amount = document.getElementById("amount").value;
+      let from = document.getElementById("from").value;
+      let to = document.getElementById("to").value;
+
+      // Simple exchange rates (you can update these)
+      let rates = {
+        USD: 1,
+        EUR: 0.9,
+        RWF: 1300
+      };
+
+      // Convert to USD first, then to target
+      let amountInUSD = amount / rates[from];
+      let result = amountInUSD * rates[to];
+
+      document.getElementById("result").innerText = result.toLocaleString();
+    }
+  </script>
+
+</body>
+</html>
